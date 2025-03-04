@@ -1,0 +1,15 @@
+# Initialize DVC in your project
+dvc init
+
+# Add a dataset to DVC tracking
+dvc add data/dataset.csv
+
+# Commit DVC changes
+git add data/dataset.csv.dvc .gitignore
+git commit -m "Add dataset to DVC tracking"
+
+# Create a DVC pipeline stage for training
+dvc run -n train_model \
+  -d src/train.py -d data/dataset.csv \
+  -o model/model.pkl \
+  python src/train.py
